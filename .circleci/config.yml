@@ -1,0 +1,22 @@
+version: 2
+jobs:
+  backendunit:
+    docker:
+      - image: circleci/node:8.16
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - backend-unit-dependencies-{{ checksum "Backend/unit/package.json" }}
+            - backend-unit-dependencies-
+      - run: ( cd Backend/unit/ ; yarn install )
+      - save_cache:
+          paths:
+            - Backend/unit/node_modules
+          key: backend-unit-dependencies-{{ checksum "Backend/unit/package.json" }}
+      - run: yarn test
+ workflows:
+   version: 2
+   all:
+     jobs:
+       - backendunit
