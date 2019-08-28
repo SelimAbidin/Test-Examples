@@ -1,0 +1,22 @@
+{
+  "name": "unit-ts",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/express": "^4.17.1",
+    "karma": "^4.3.0",
+    "mocha": "^6.2.0",
+    "ts-node": "^8.3.0",
+    "typescript": "^3.5.3",
+    "webpack": "^4.39.3",
+    "webpack-cli": "^3.3.7"
+  },
+  "scripts": {
+    "compile": "tsc",
+    "test": "mocha --require ts-node/register specs/*.spec.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
