@@ -1,0 +1,14 @@
+{
+  "name": "unit",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Selim Abidin",
+  "license": "MIT",
+  "scripts": {
+    "test": "mocha specs/*.spec.js",
+    "test:watch": "mocha specs/*.spec.js --watch"
+  },
+  "devDependencies": {
+    "mocha": "^6.2.0"
+  }
+}
