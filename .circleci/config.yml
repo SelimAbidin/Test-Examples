@@ -32,9 +32,27 @@
           key: backend-unit-ts-dependencies-{{ checksum "Backend/unit-ts/package.json" }}
       - run: ( cd Backend/unit-ts/ ; yarn test )
       #end backend-unit-ts
+
+  api-test:
+    docker:
+      - image: circleci/node:8.16
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - backend-api-test-dependencies-{{ checksum "Backend/api-test/package.json" }}
+            - backend-api-test-dependencies-
+      - run: ( cd Backend/api-test/ ; yarn install )
+      - save_cache:
+          paths:
+            - Backend/api-test/node_modules
+          key: backend-api-test-dependencies-{{ checksum "Backend/api-test/package.json" }}
+      - run: ( cd Backend/api-test/ ; yarn test )
+      #end api-test
  workflows:
    version: 2
    all:
      jobs:
        - backend-unit
        - backend-unit-ts
+       - api-test
